@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="104px" viewBox="0 0 24 104" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>iconsprite_btbar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="all" transform="translate(-489.000000, -431.000000)" fill="#FFFFFF">
+            <g id="Group-2" transform="translate(489.000000, 431.000000)">
+                <path d="M5.17157288,97 L20,97 L20,85 L4.00884974,85 C4.00955553,85.0000708 4.00750036,89.3897003 4.00268426,98.1688886 L5.17157288,97 Z M20,83 C21.1,83 22,83.9 22,85 L22,97 C22,98.1 21.1,99 20,99 L6,99 L2,103 L2.01,85 C2.01,83.9 2.9,83 4,83 L20,83 Z M13,95 L13,93 L11,93 L11,95 L13,95 Z M13,91 L13,87 L11,87 L11,91 L13,91 Z" id="Combined-Shape" fill-rule="nonzero"></path>
+                <path d="M21.3144534,18.0621213 L11.5273438,8.27501173 L1.74023413,18.0621213 L0.213635251,16.5355225 L11.5273438,5.22181396 L22.8410522,16.5355225 L21.3144534,18.0621213 Z" id="Combined-Shape"></path>
+                <polygon id="Combined-Shape" points="11 51 11 42 13 42 13 51 22 51 22 53 13 53 13 62 11 62 11 53 2 53 2 51"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
