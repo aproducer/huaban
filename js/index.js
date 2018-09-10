@@ -1,3 +1,5 @@
+let data;
+let index = 0; //控制样式
 $(document).ready(function() {
 	$("#btnTop").click(function() { //返回顶部
 		$("html").animate({
@@ -19,6 +21,21 @@ $(document).ready(function() {
 
 	add();
 
+	$(".get-more-line a").click(function() {
+		if(index < 10) {
+			for(let i = 0; i < 5; i++) { //处理每一行
+				createRow();
+			}
+		}
+
+		//console.log(index);
+
+		$(this).text("没有更多了");
+	});
+	
+	$(".display").on("click",".normal-box",function(){
+		window.location.href='show.html';
+	})
 })
 
 function add() {
@@ -26,67 +43,72 @@ function add() {
 		type: "get",
 		url: "js/indexItem.json",
 		async: true,
-		success: function(data) {
-			let index = 0; //控制样式
-			for(let rowdata of data) { //处理每一行
-				dataNameHandle(rowdata); //处理名字格式
-				//console.log(i, index);
-				let newRow = $("<div clas=\"display-row\"></div>");
-				$(".display:eq(0)").append(newRow);
-				newRow.load(`commonHTML/indexItem.html .display-row:eq(${index%2})`, function() {
-					//console.log("success");
-					let imgarr = $(this).find("img");
-					let infoarr = $(this).find(".info");
-					let changeBox = $(this).find(".change-box");
-					let attachInfo = $(this).find(".attach-info");
-					//console.log(rowdata,infoarr,imgarr);
-					for(let i = 0; i < 3; i++) { //处理行中每一项
-						$(imgarr[i]).attr("src", rowdata[i].src);
-						$(infoarr[i]).find("h2").html(rowdata[i].name);
-						$(infoarr[i]).find("p").html(rowdata[i].info);
-						$(infoarr[i]).find("span").html(rowdata[i].author);
-						switch(rowdata[i].type) {
-							case "画板":
-								$(infoarr[i]).find(".title-info").css("background-position", "0px 0px");
-								break;
-							case "兴趣":
-								$(infoarr[i]).find(".title-info").css("background-position", "0px -80px");
-								break;
-							case "人物":
-								$(infoarr[i]).find(".title-info").css("background-position", "0px -160px");
-								break;
-							default:
-								break;
-						}
-					}
-					attachInfo.find("h2").html(changeBox.find("h2").html());
-					attachInfo.find("span").html(changeBox.find("p").html());
-					let str=changeBox.find(".title-info").css("background-position-y");
-					console.log(str);
-					switch(str) {
-							case "0px":
-								attachInfo.find(".title-info").css("background-position","-236px 7px");
-								break;
-							case "-80px":
-								attachInfo.find(".title-info").css("background-position","-231px -68px");
-								break;
-							case "-160px":
-								attachInfo.find(".title-info").css("background-position","-236px -155px");
-								break;
-							default:
-								break;
-					}
-					
-				});
-				index++; //切换样式
+		success: function(msg) {
+			data = msg;
+			for(let i = 0; i < 5; i++) { //处理每一行
+				createRow();
 			}
 
 		}
 	});
 }
 
-function dataNameHandle(data) {
-	for(let i of data) {
+function createRow() {
+	let rowdata = data[index];
+	dataNameHandle(rowdata); //处理名字格式
+	//console.log(i, index);
+	let newRow = $("<div clas=\"display-row\"></div>");
+	$(".display:eq(0)").append(newRow);
+	newRow.load(`commonHTML/indexItem.html .display-row:eq(${index%2})`, function() {
+		//console.log("success");
+		let imgarr = $(this).find("img");
+		let infoarr = $(this).find(".info");
+		let changeBox = $(this).find(".change-box");
+		let attachInfo = $(this).find(".attach-info");
+		//console.log(rowdata,infoarr,imgarr);
+		for(let i = 0; i < 3; i++) { //处理行中每一项
+			$(imgarr[i]).attr("src", rowdata[i].src);
+			$(infoarr[i]).find("h2").html(rowdata[i].name);
+			$(infoarr[i]).find("p").html(rowdata[i].info);
+			$(infoarr[i]).find("span").html(rowdata[i].author);
+			switch(rowdata[i].type) {
+				case "画板":
+					$(infoarr[i]).find(".title-info").css("background-position", "0px 0px");
+					break;
+				case "兴趣":
+					$(infoarr[i]).find(".title-info").css("background-position", "0px -80px");
+					break;
+				case "人物":
+					$(infoarr[i]).find(".title-info").css("background-position", "0px -160px");
+					break;
+				default:
+					break;
+			}
+		}
+		attachInfo.find("h2").html(changeBox.find("h2").html());
+		attachInfo.find("span").html(changeBox.find("p").html());
+		let str = changeBox.find(".title-info").css("background-position-y");
+		//console.log(str);
+		switch(str) {
+			case "0px":
+				attachInfo.find(".title-info").css("background-position", "-236px 7px");
+				break;
+			case "-80px":
+				attachInfo.find(".title-info").css("background-position", "-231px -68px");
+				break;
+			case "-160px":
+				attachInfo.find(".title-info").css("background-position", "-236px -155px");
+				break;
+			default:
+				break;
+		}
+
+	});
+	index++; //切换样式
+}
+
+function dataNameHandle(rowdata) {
+	for(let i of rowdata) {
 		if(i.author) {
 			i.author = "来自<a>" + i.author + "<a/>";
 		}

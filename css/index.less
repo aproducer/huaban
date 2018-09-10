@@ -150,6 +150,9 @@ input {
     .menu-nav {
         background: url(../img/menu_sprite.svg) -50px -558px no-repeat;
     }
+    #home{
+        border-bottom: 1px solid white;
+    }
 }
 
 .changed-header {
@@ -218,6 +221,9 @@ input {
     .menu-nav {
         background: url(../img/menu_sprite.svg) 0 -248px no-repeat;
     }
+    #home{
+        color: rgb(185,38,25);
+    }
 }
 
 #manu-bar {
@@ -239,6 +245,7 @@ input {
             line-height: 28px;
             margin-right: 25px;
         }
+        
         .menu-nav {
             position: relative;
             float: left;
@@ -413,6 +420,9 @@ input {
             span {
                 display: inline-block;
                 margin-top: 10px;
+                @media only screen and (max-width: 1275px) {
+                    margin-top: 0px;
+                }
                 line-height: 20px;
                 a {
                     margin-left: 5px;

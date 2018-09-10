@@ -13,6 +13,15 @@ $(document).ready(function() {
 		} else {
 			$("#btnTop").css("visibility", "hidden");
 		}
+		//console.log($(document).scrollTop(),$(document).height(),$(window).height());
+		if($(document).height()-$(document).scrollTop()-$(window).height()<400&&$(document).height()<10000){
+			for(let i = 0; i < 30; i++) {//创建的数目,起始索引
+				dataCreate(i);
+			}
+		}else if($(document).height()>=10000){
+			$(".loading").css("display","block");
+		}
+		
 	});
 	changeCol();
 	$(window).resize(changeCol);
@@ -35,6 +44,7 @@ function changeCol() { //列数改变时
 			break;
 	}
 	if(colnum != oldColNum) {
+		$(".water-fall").height(0);
 		heightarr.splice(colnum);
 		for(let i = 0; i < colnum; i++) {
 			heightarr[i] = 0;
@@ -43,7 +53,8 @@ function changeCol() { //列数改变时
 		for(let j = 0; j < itemarr.length; j++) {
 			sort($(itemarr[j]), $(itemarr[j]).find("img:eq(0)").height());
 		}
-		console.log("changed");
+		//console.log("changed");
+		
 	}
 }
 
@@ -54,7 +65,7 @@ function add() {
 		async: true,
 		success: function(msg) { //处理数据
 			data = msg;
-			console.log(data);
+			//console.log(data);
 			for(let i = 0; i < 30; i++) {//创建的数目,起始索引
 				dataCreate(i);
 			}
@@ -99,11 +110,14 @@ function sort(item, height) { //进行布局,接受参数为img的高
 			min = heightarr[i];
 		}
 	}
-	console.log(index, heightarr[index]);
+	//console.log(index, heightarr[index]);
 	item.css({
 		"top": `${heightarr[index]}px`,
 		"left": `${252*index}px`
 	});
 	heightarr[index] += (height + 122);
-	console.log(index, min, heightarr);
+	if($(".water-fall").height()<heightarr[index]){
+		$(".water-fall").height(heightarr[index]);
+	}
+	//console.log(index, min, heightarr);
 }
