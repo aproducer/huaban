@@ -289,12 +289,17 @@ body {
         }
     }
     .water-fall {
-        display: flex;
-        flex-wrap: wrap;
+//      display: flex;
+//      flex-wrap: wrap;
+//      align-items: flex-start;
         margin-top: 16px;
         margin-left: -16px;
+        position: relative;
         .data-item {
-            flex-shrink: 0;
+//          flex-shrink: 0;
+            position: absolute;
+            left: -200px;
+            top: 1000px;
             width: 236px;
             font-size: 12px;
             background-color: #fff;
